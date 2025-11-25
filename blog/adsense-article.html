@@ -3,128 +3,215 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gmail 整理ツールを作った理由と便利な使い方｜Mail Cleaner Lab</title>
+  <title>Gmail をすっきり整理する 5つのコツ｜メールが溜まりがちな人向けガイド</title>
 
-  <meta name="description" content="Gmail の不要メールを効率よく整理するツール「Mail Cleaner Lab」を公開した理由と、開発の背景、使い方をまとめました。広告メールの増加に悩む人向けです。">
-  <link rel="canonical" href="https://automaker-hub.github.io/blog/adsense-article.html">
+  <meta name="description" content="Gmail を効率よく整理するための 5 つのコツを紹介。検索演算子の活用、アーカイブ運用、プロモーション整理など、初心者でも今日から使える実践テクニックをまとめています。">
+
+  <link rel="canonical" href="https://automaker-hub.github.io/blog/adsense-article.html" />
 
   <style>
     body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       margin: 0;
-      font-family: system-ui, sans-serif;
-      background: #f7f7f7;
+      padding: 0;
+      background: #fafafa;
       color: #202124;
       line-height: 1.7;
-      padding: 0 16px;
-    }
-
-    header {
-      max-width: 960px;
-      margin: 20px auto;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #e0e0e0;
-    }
-
-    header h1 {
-      font-size: 1.6rem;
-      margin: 0;
-      color: #1a73e8;
-    }
-
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 12px;
-      text-decoration: none;
-      color: #1a73e8;
-      font-size: 0.9rem;
     }
 
     .container {
-      max-width: 760px;
-      margin: 0 auto 40px;
-      padding: 20px;
-      background: #fff;
-      border-radius: 12px;
-      border: 1px solid #e0e0e0;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin-bottom: 20px;
     }
 
     h2 {
-      margin-top: 28px;
-      font-size: 1.3rem;
+      margin-top: 32px;
+      font-size: 1.4rem;
       border-left: 4px solid #1a73e8;
-      padding-left: 8px;
+      padding-left: 10px;
+      font-weight: 600;
     }
 
-    p {
-      margin: 14px 0;
+    .back-link {
+      display: inline-block;
+      margin-bottom: 16px;
+      font-size: 0.9rem;
+      color: #1a73e8;
+    }
+
+    .section {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     }
 
     ul {
       padding-left: 20px;
     }
 
+    .tips-box {
+      background: #e8f0fe;
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 12px;
+      border-left: 4px solid #1a73e8;
+    }
+
     footer {
-      text-align: center;
-      font-size: 0.75rem;
-      color: #5f6368;
-      margin: 40px 0;
+      margin-top: 40px;
+      text-align: right;
+      font-size: 0.8rem;
+      color: #777;
     }
   </style>
 </head>
-
 <body>
-  <header>
-    <a href="../index.html" class="back-link">← トップに戻る</a>
-    <h1>Gmail 整理ツールを作った理由と機能まとめ</h1>
-  </header>
-
   <div class="container">
-    <p>
-      毎日届く広告メールやメルマガをまとめて整理したい——。  
-      そんな悩みを解決するために「Mail Cleaner Lab」を開発しました。
-    </p>
 
-    <h2>なぜこのツールを作ったのか</h2>
-    <p>
-      近年、ネットショッピングやサービス登録に伴い、宣伝メールが爆発的に増えています。  
-      しかし Gmail の検索コマンドは専門的で、一般ユーザーには扱いが難しいという問題がありました。
-    </p>
+    <a href="/" class="back-link">← トップに戻る</a>
 
-    <p>
-      そこで、初心者でもクリックだけで整理できる Web ツールを作りたいと考え、  
-      Mail Cleaner Lab を公開しました。
-    </p>
+    <h1>Gmail をすっきり整理する 5つのコツ｜メールが溜まりがちな人向けガイド</h1>
 
-    <h2>このツールでできること</h2>
-    <ul>
-      <li>送信元・件名・本文の条件から検索を自動生成</li>
-      <li>削除 / アーカイブ / 既読化 をワンクリック実行</li>
-      <li>操作前に対象メール数を確認（プレビュー機能）</li>
-      <li>Google OAuth による安全な連携</li>
-    </ul>
+    <div class="section">
+      <p>
+        つい気づいたら受信トレイが <strong>数千通の未読</strong> になる…。  
+        メルマガや広告メールがどんどん溜まってしまう…。  
+        そんな悩みを持つ人向けに、今日から使える Gmail 整理のコツをまとめました。
+      </p>
 
-    <h2>開発の際に意識したこと</h2>
-    <p>
-      「初心者でも使えること」「スマホでも操作しやすいこと」「信頼できるUI」という3点を重視しました。
-      Googleのデザインガイドラインに近い配色を採用し、安心して利用できる見た目に整えています。
-    </p>
+      <p>
+        「Mail Cleaner Lab」を使えばクリックだけで整理できますが、  
+        Gmail標準の機能だけでもかなりスッキリできます。  
+      </p>
+    </div>
 
-    <h2>今後追加予定の機能</h2>
-    <ul>
-      <li>iCloudメールにも対応した整理機能</li>
-      <li>自動スケジュール削除</li>
-      <li>メール解析レポート</li>
-    </ul>
+    <h2>1. 「プロモーション」「SNS」タブを積極的に活用する</h2>
+    <div class="section">
+      <p>
+        Gmail では広告系のメールを自動で分類してくれるため、  
+        まずは「受信トレイ（メイン）」に残しておくべきメールと  
+        そうでないメールを分けるだけで大幅に整理されます。
+      </p>
 
-    <h2>まとめ</h2>
-    <p>
-      Mail Cleaner Lab は「メール整理をもっと簡単に」をテーマに開発した無料ツールです。  
-      今後も改善を続け、より便利にしていきます。
-    </p>
+      <div class="tips-box">
+        ✔ メインだけチェック、中身を開くのは必要なメールだけ  
+        ✔ プロモーションは「基本開かない」運用にする
+      </div>
+    </div>
+
+    <h2>2. メールを消さずに「アーカイブ」で隠す</h2>
+    <div class="section">
+      <p>
+        Gmail は容量が大きいので、無理に削除しなくても OK。  
+        読み終わったメールは <strong>アーカイブ（INBOX を外す）</strong> だけで十分整理できます。
+      </p>
+
+      <ul>
+        <li>削除：完全にいらないもの</li>
+        <li>アーカイブ：あとで検索すれば見られればOK</li>
+      </ul>
+
+      <p>この使い分けで、受信トレイはいつでもスッキリします。</p>
+    </div>
+
+    <h2>3. 送信元ごとに一括整理する</h2>
+    <div class="section">
+      <p>
+        広告メールは同じ送信元から定期的に届くため、  
+        <strong>from:（送信元）検索</strong> が最強です。
+      </p>
+
+      <div class="tips-box">
+        例：<br>
+        ・<code>from:@rakuten.co.jp</code>  
+        ・<code>from:@amazon.co.jp</code>  
+        ・<code>subject:セール</code>
+      </div>
+
+      <p>
+        Mail Cleaner Lab ならボタン1つで自動生成できます。
+      </p>
+    </div>
+
+    <h2>4. 日付で古いメールから整理する</h2>
+    <div class="section">
+      <p>
+        大量に溜まっている場合は、まずは古い順に整理する方が安全です。
+      </p>
+
+      <div class="tips-box">
+        例：  
+        ・<code>before:2024/01/01</code>（指定日より前）  
+        ・<code>older_than:30d</code>（30日前より古い）
+      </div>
+
+      <p>
+        広告メールは古いほど不要なので、まずはここから削除すると◎。
+      </p>
+    </div>
+
+    <h2>5. キーワードで「残すもの」を除外する</h2>
+    <div class="section">
+      <p>
+        一括削除の最大の不安は「必要なメールまで消えてしまうこと」。  
+        そんなときは <strong>-{残したいキーワード}</strong> を使うと安心です。
+      </p>
+
+      <div class="tips-box">
+        例：  
+        ・<code>-{領収書}</code>  
+        ・<code>-{利用明細}</code>  
+        ・<code>-{受注}</code>
+      </div>
+
+      <p>
+        除外キーワードさえ正しく設定しておけば、誤削除の心配がほぼ無くなります。
+      </p>
+    </div>
+
+    <h2>まとめ：整理は “設定” が9割</h2>
+    <div class="section">
+      <p>
+        Gmail の整理は面倒に見えますが、  
+        コツさえ掴めば <strong>毎日 1 分で管理できるレベル</strong> になります。
+      </p>
+
+      <ul>
+        <li>タブ分類 → 自動で整理される</li>
+        <li>アーカイブ → 隠してスッキリ</li>
+        <li>送信元検索 → 簡単に一括処理</li>
+        <li>日付検索 → 古いものから安全に処理</li>
+        <li>除外キーワード → 大事なメールを守る</li>
+      </ul>
+
+      <p>
+        そして、これらの操作を完全自動化したのが  
+        <strong>Mail Cleaner Lab（このサイトのGmail整理ツール）</strong> です。
+      </p>
+
+      <p>
+        ぜひ毎日のメール整理に活用してください。
+      </p>
+    </div>
+
+    <footer>
+      Mail Cleaner Lab – automaker-hub
+    </footer>
+
   </div>
-
-  <footer>© Mail Cleaner Lab / automaker-hub</footer>
 </body>
 </html>
