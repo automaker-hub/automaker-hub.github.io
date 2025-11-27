@@ -6,7 +6,7 @@
   <title>Gmail 整理ツール – Mail Cleaner Lab | automaker-hub</title>
 
   <!-- ★ SEO 基本タグ -->
-  <meta name="description" content="Gmail の不要メールを一気に整理できる無料ツール。検索条件を自動生成して、削除・既読化・削除せず受信トレイから隠す（アーカイブ）までワンクリックで実行できます。ブラウザだけで完結し、インストール不要。">
+  <meta name="description" content="Gmail の不要メールを一気に整理できる無料ツール。検索条件を自動生成して、削除・既読化・削除せず受信トレイから非表示にする（削除されません）までワンクリックで実行できます。ブラウザだけで完結し、インストール不要。">
   <meta name="keywords" content="Gmail 整理, Gmail 一括削除, メール 整理 ツール, 迷惑メール 削除, メールボックス 片付け">
 
   <!-- ★ カノニカル（正規 URL） -->
@@ -14,7 +14,7 @@
 
   <!-- ★ OGP -->
   <meta property="og:title" content="Gmail 整理ツール – Mail Cleaner Lab" />
-  <meta property="og:description" content="Gmail の不要メールを一括整理。検索条件を自動生成し、削除・既読化・削除せず受信トレイから隠す（アーカイブ）までワンクリックで実行できる無料ツールです。" />
+  <meta property="og:description" content="Gmail の不要メールを一括整理。検索条件を自動生成し、削除・既読化・削除せず受信トレイから非表示にする（削除されません）までワンクリックで実行できる無料ツールです。" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://automaker-hub.github.io/" />
   <meta property="og:image" content="https://automaker-hub.github.io/ogp.png" />
@@ -24,7 +24,7 @@
   <!-- ★ Twitter カード -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Gmail 整理ツール – Mail Cleaner Lab" />
-  <meta name="twitter:description" content="Gmail の不要メールを一括整理。検索条件を自動生成し、削除・既読化・削除せず受信トレイから隠す（アーカイブ）までワンクリックで実行できる無料ツールです。" />
+  <meta name="twitter:description" content="Gmail の不要メールを一括整理。検索条件を自動生成し、削除・既読化・削除せず受信トレイから非表示にする（削除されません）までワンクリックで実行できる無料ツールです。" />
   <meta name="twitter:image" content="https://automaker-hub.github.io/ogp.png" />
 
   <!-- ★ 構造化データ（JSON-LD） -->
@@ -35,7 +35,7 @@
     "name": "Gmail 整理ツール – Mail Cleaner Lab",
     "url": "https://automaker-hub.github.io/",
     "applicationCategory": "Utility",
-    "description": "Gmail の不要メールを一括整理。検索条件の自動生成と、削除・既読化・削除せず受信トレイから隠す（アーカイブ）をワンクリックで実行できる無料ツール。",
+    "description": "Gmail の不要メールを一括整理。検索条件の自動生成と、削除・既読化・削除せず受信トレイから非表示にする（削除されません）をワンクリックで実行できる無料ツール。",
     "operatingSystem": "All",
     "author": {
       "@type": "Person",
@@ -568,7 +568,7 @@
             <h1 class="app-title">Gmail 整理ツール</h1>
           </div>
           <p class="app-subtitle">
-            いらないメールをまとめて整理できます。検索条件を自動で作り、削除・既読にする・削除せず受信トレイから隠す（アーカイブ）を一度に実行します。
+            いらないメールをまとめて整理できます。検索条件を自動で作り、削除・既読にする・削除せず受信トレイから非表示にする（削除されません）を一度に実行します。
           </p>
         </div>
         <div class="headline-right">
@@ -666,7 +666,7 @@
         </div>
         <select id="action-select">
           <option value="trash">完全にいらないので削除する（ゴミ箱へ移動）</option>
-          <option value="archive">削除せず受信トレイから隠す（アーカイブ）</option>
+          <option value="archive">削除せず受信トレイから非表示にする（削除されません）</option>
           <option value="read">そのまま残して既読にする</option>
         </select>
 
@@ -1044,7 +1044,7 @@
 
       let actionLabel = "";
       if (action === "trash") actionLabel = "完全にいらないので削除する（ゴミ箱へ移動）";
-      if (action === "archive") actionLabel = "削除せず受信トレイから隠す（アーカイブ）";
+      if (action === "archive") actionLabel = "削除せず受信トレイから非表示にする（削除されません）";
       if (action === "read") actionLabel = "そのまま残して既読にする";
 
       const ok = confirm(
