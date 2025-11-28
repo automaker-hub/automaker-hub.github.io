@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gmail をすっきり整理する 5つのコツ｜メールが溜まりがちな人向けガイド</title>
+
+  <meta name="description" content="Gmail が広告メールや通知でいっぱい…という人向けに、今日から実践できる5つの整理テクニックを完全解説。受信トレイをスッキリさせる具体的な方法と、自動で片付く仕組みの作り方も紹介。">
+  <link rel="canonical" href="https://automaker-hub.github.io/blog/gmail-cleanup-tips.html">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: #f5f5f5;
+      color: #202124;
+    }
+    .page {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+    header {
+      background: #ffffff;
+      padding: 12px 0 14px;
+      border-bottom: 1px solid #e0e0e0;
+      margin-bottom: 28px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .headline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 16px;
+    }
+    .app-icon-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #e8f0fe;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #1a73e8;
+      font-size: 18px;
+    }
+    h1 {
+      font-size: 1.35rem;
+      margin: 0;
+    }
+    article {
+      background: #ffffff;
+      padding: 20px 22px;
+      border-radius: 12px;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 1px 3px rgba(60,64,67,0.25);
+    }
+    h2 {
+      margin-top: 28px;
+      font-size: 1.15rem;
+    }
+    p {
+      line-height: 1.7;
+    }
+    .point-box {
+      background: #f8f9fa;
+      padding: 14px 16px;
+      border-radius: 8px;
+      border-left: 4px solid #1a73e8;
+      margin: 18px 0;
+    }
+    a.main-link {
+      display: inline-block;
+      margin: 14px 0;
+      padding: 10px 14px;
+      background: #1a73e8;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: 0 1px 3px rgba(60,64,67,0.3);
+    }
+    footer {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 0.78rem;
+      color: #5f6368;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="headline">
+    <div class="app-icon-circle">✉️</div>
+    <h1>Gmail をすっきり整理する 5つのコツ</h1>
+  </div>
+</header>
+
+<div class="page">
+  <article>
+    <p>
+      「気づけば Gmail が広告や通知で埋まっている…」  
+      「必要なメールがどこにあるか分からない」  
+    </p>
+
+    <p>
+      Gmail は便利な反面、<strong>何もしないとどんどん溜まる仕組み</strong>になっています。  
+      特にネット通販・アプリ通知・SNS・メルマガを利用している人は、
+      1日で数十件のメールが自動的に届くため、気づけばカオス状態に…。
+    </p>
+
+    <p>
+      この記事では、<strong>今日から誰でも実践できる「Gmail整理の5ステップ」</strong>を、初心者向けに分かりやすくまとめました。  
+      また、手作業が面倒な人向けに、<strong>自動で条件を作って一括整理できる無料ツール</strong>も紹介します。
+    </p>
+
+    <div class="point-box">
+      <strong>結論：</strong>  
+      Gmail を根本的に綺麗にしたいなら  
+      <strong>「①不要メールの仕分け」＋「②自動化」</strong> この2つが最強です。
+    </div>
+
+    <a href="https://automaker-hub.github.io/" class="main-link">
+      👉 Gmail を自動で片付ける無料ツールはこちら
+    </a>
+
+    <!-- ====================== -->
+    <!-- 1 -->
+    <!-- ====================== -->
+
+    <h2>1. まずは「検索条件」で不要メールを仕分けする</h2>
+    <p>
+      Gmail の検索は非常に高性能で、キーワードを入力するだけで、
+      <strong>特定の条件に一致するメールだけ</strong>を一瞬で抽出できます。
+    </p>
+
+    <p>例えば、こんな条件があります：</p>
+
+    <ul>
+      <li><code>from:@rakuten.co.jp</code> → 楽天の宣伝メールだけ表示</li>
+      <li><code>from:(@info.line.me)</code> → LINE関連通知のみ</li>
+      <li><code>is:unread</code> → 未読メールだけ</li>
+      <li><code>before:2024/01/01</code> → 古いメールだけ表示</li>
+      <li><code>subject:(キャンペーン)</code> → 件名に「キャンペーン」を含むメール</li>
+    </ul>
+
+    <p>
+      これらを組み合わせれば、Gmail をかなり綺麗にできます。  
+      しかし問題は…
+    </p>
+
+    <div class="point-box">
+      <strong>初心者には検索コマンドが難しい</strong>  
+      ＋ 毎回入力するのが面倒  
+      ＋ 条件を間違えると重要なメールまでヒットしてしまう  
+    </div>
+
+    <p>そこで便利なのが、<strong>条件を自動生成してくれる無料ツール</strong>です。</p>
+
+    <a href="https://automaker-hub.github.io/" class="main-link">
+      ✨ 条件をワンクリックで作る（Mail Cleaner Lab）
+    </a>
+
+    <!-- ====================== -->
+    <!-- 2 -->
+    <!-- ====================== -->
+
+    <h2>2. 古いメールを「30日より前でまとめて処理」する</h2>
+    <p>
+      古いメールは、基本的に読み返すことはありません。  
+      Gmail は 15GB という容量制限があるため、<strong>古いメールを整理するだけで大幅にスッキリ</strong>します。
+    </p>
+
+    <div class="point-box">
+      <strong>おすすめ検索例：</strong><br>
+      <code>before:30d</code><br>
+      → 30日より前のメールだけを表示
+    </div>
+
+    <p>
+      実際、多くの人は、1ヶ月前以上のメールをほぼ見返しません。  
+      特に「キャンペーン」「広告」「SNS通知」は溜まるだけなので、
+      期間フィルタを使って大量に整理するのがおすすめです。
+    </p>
+
+    <!-- ====================== -->
+    <!-- 3 -->
+    <!-- ====================== -->
+
+    <h2>3. 使わないメルマガは「一括で既読」にして通知ストレスを減らす</h2>
+
+    <p>
+      いきなり削除するのは不安…  
+      という人は、まず<strong>既読化だけでも効果抜群</strong>です。
+    </p>
+
+    <p>
+      Gmail の「未読件数（●●件）」は、数字が大きいほど精神的に負担になります。  
+      メルマガ・広告系はとりあえず既読にしておくと、
+      受信トレイが精神的にもスッキリします。
+    </p>
+
+    <p>
+      また、まとめて既読にしておくと、  
+      <strong>本当に読むべきメールが埋もれにくくなる</strong>というメリットもあります。
+    </p>
+
+    <!-- ====================== -->
+    <!-- 4 -->
+    <!-- ====================== -->
+
+    <h2>4. 本当に不要なメールは「まとめてゴミ箱へ」</h2>
+
+    <p>
+      Gmail のゴミ箱は<strong>30日後に自動削除</strong>されます。  
+      これは誤削除のリスクを抑えつつ、不要メールを減らせる便利な仕組みです。
+    </p>
+
+    <p>
+      特に以下のメールは、積極的にゴミ箱へ入れてOKです：
+    </p>
+
+    <ul>
+      <li>過去のキャンペーン</li>
+      <li>使用していないアプリの通知</li>
+      <li>通販サイトの自動配信メール</li>
+      <li>読みもしないメルマガ</li>
+    </ul>
+
+    <p>
+      不要メールの整理は習慣化するのが大切です。
+    </p>
+
+    <!-- ====================== -->
+    <!-- 5 -->
+    <!-- ====================== -->
+
+    <h2>5. 定期的に「整理日」を作って自動化する</h2>
+
+    <p>
+      毎週・毎月のどこかで「Gmail を見直す日」を作ると、  
+      受信トレイが常に綺麗な状態を保てます。
+    </p>
+
+    <p>
+      しかし、現実的には人間が毎回手動で整理するのはかなり大変…。  
+      そこで役立つのが、<strong>条件の自動生成＋ワンクリックで処理できるツール</strong>です。
+    </p>
+
+    <div class="point-box">
+      手作業に限界を感じたら、  
+      <strong>自動整理ツールを使うのが最も効率的</strong>です。
+    </div>
+
+    <a href="https://automaker-hub.github.io/" class="main-link">
+      📩 Gmail を一瞬で整理する（無料ツールへ戻る）
+    </a>
+
+  </article>
+
+  <footer>
+    Mail Cleaner Lab – Gmail 自動整理ツール（automaker-hub）  
+  </footer>
+</div>
+</body>
+</html>
