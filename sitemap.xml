@@ -19,10 +19,29 @@
     <priority>0.5</priority>
   </url>
 
+  <!-- 🔽 ここからブログ記事（blog/フォルダ） -->
   <url>
-    <loc>https://automaker-hub.github.io/googled6bfdd8e27cac824.html</loc>
+    <loc>https://automaker-hub.github.io/blog/adsense-article.html</loc>
     <lastmod>2025-11-23</lastmod>
-    <priority>0.1</priority>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://automaker-hub.github.io/blog/delete-tips.html</loc>
+    <lastmod>2025-11-23</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://automaker-hub.github.io/blog/gmail-cleanup-tips.html</loc>
+    <lastmod>2025-11-23</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://automaker-hub.github.io/blog/troubles.html</loc>
+    <lastmod>2025-11-23</lastmod>
+    <priority>0.6</priority>
   </url>
 
 </urlset>
