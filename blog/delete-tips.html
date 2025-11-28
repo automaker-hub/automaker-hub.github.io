@@ -1,1 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gmail の不要メールを安全に削除する方法｜一括削除・検索テクニックまとめ</title>
+
+  <meta name="description" content="Gmailに溜まった不要メールを一括削除する3つの方法を解説。失敗せず安全に削除するコツ、検索条件の使い方、アーカイブ・ゴミ箱の違いも初心者向けにまとめました。">
+  <link rel="canonical" href="https://automaker-hub.github.io/blog/delete-tips.html">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: #f5f5f5;
+      color: #202124;
+    }
+    .page {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+    header {
+      background: #ffffff;
+      padding: 12px 0 14px;
+      border-bottom: 1px solid #e0e0e0;
+      margin-bottom: 28px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .headline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 16px;
+    }
+    .app-icon-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #ffe8e8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #d93025;
+      font-size: 18px;
+    }
+    h1 {
+      font-size: 1.35rem;
+      margin: 0;
+    }
+    article {
+      background: #ffffff;
+      padding: 20px 22px;
+      border-radius: 12px;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 1px 3px rgba(60,64,67,0.25);
+    }
+    h2 {
+      margin-top: 28px;
+      font-size: 1.15rem;
+    }
+    p {
+      line-height: 1.7;
+    }
+    .point-box {
+      background: #f8f9fa;
+      padding: 14px 16px;
+      border-radius: 8px;
+      border-left: 4px solid #d93025;
+      margin: 18px 0;
+    }
+    a.main-link {
+      display: inline-block;
+      margin: 14px 0;
+      padding: 10px 14px;
+      background: #d93025;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: 0 1px 3px rgba(60,64,67,0.3);
+    }
+    footer {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 0.78rem;
+      color: #5f6368;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="headline">
+    <div class="app-icon-circle">🗑️</div>
+    <h1>Gmail の不要メールを安全に削除する方法｜初心者向けガイド</h1>
+  </div>
+</header>
+
+<div class="page">
+  <article>
+
+    <p>
+      Gmail を使っていると、広告メール・SNS通知・アプリの自動配信など、  
+      <strong>放っておくだけでどんどん受信トレイが埋まります。</strong>
+    </p>
+
+    <p>
+      この記事では、  
+      <strong>Gmail に溜まった不要メールを効率よく、安全に削除する方法</strong>  
+      を初心者向けにまとめました。
+    </p>
+
+    <div class="point-box">
+      <strong>最初に結論：</strong><br>
+      不要メールの削除は  
+      <strong>①検索で仕分け → ②安全に確認 → ③まとめて削除</strong>  
+      の3ステップが最も確実です。
+    </div>
+
+    <a href="https://automaker-hub.github.io/" class="main-link">
+      👉 Gmail を自動整理できる無料ツールはこちら
+    </a>
+
+    <!-- ====================== -->
+    <!-- 1 -->
+    <!-- ====================== -->
+
+    <h2>1. Gmail の検索で不要メールだけを抽出する</h2>
+
+    <p>
+      まずは削除対象を間違えないために、  
+      <strong>特定のメールだけを検索で抽出</strong> します。
+    </p>
+
+    <p>代表的な検索例はこちら：</p>
+
+    <ul>
+      <li><code>from:@amazon.co.jp</code> → Amazon系メールだけ表示</li>
+      <li><code>subject:(キャンペーン)</code> → キャンペーン系メール</li>
+      <li><code>older_than:30d</code> → 30日より前のメール</li>
+      <li><code>category:promotions</code> → プロモーションメールだけ表示</li>
+    </ul>
+
+    <div class="point-box">
+      検索条件を組み合わせれば、  
+      <strong>本当に不要なメールだけを正確に抽出</strong>できます。
+    </div>
+
+    <a href="https://automaker-hub.github.io/" class="main-link">
+      🔍 条件を自動生成する（Mail Cleaner Lab）
+    </a>
+
+    <!-- ====================== -->
+    <!-- 2 -->
+    <!-- ====================== -->
+
+    <h2>2. 削除前に「メール件数」を確認する</h2>
+
+    <p>
+      Gmail では、画面左上のチェックボックスで  
+      抽出したメールを一括選択できます。
+    </p>
+
+    <p>
+      ただし、<strong>重要メールが混ざっていないか</strong>は必ず確認しましょう。
+    </p>
+
+    <div class="point-box">
+      メールの誤削除は取り戻せない場合があります。  
+      一度「すべて選択」の前に、件名をざっと確認するのがおすすめです。
+    </div>
+
+    <!-- ====================== -->
+    <!-- 3 -->
+    <!-- ====================== -->
+
+    <h2>3. 必要ないメールを一括削除する</h2>
+
+    <p>
+      不要なメールを選択したら、上部メニューから  
+      <strong>🗑 ゴミ箱</strong> をクリックするだけです。
+    </p>
+
+    <p>
+      Gmail のゴミ箱は  
+      <strong>30日後に完全削除される</strong>  
+      ので、安全に整理できます。
+    </p>
+
+    <h2>「削除」と「アーカイブ」の違い</h2>
+
+    <ul>
+      <li><strong>削除：</strong>ゴミ箱へ → 30日後に完全削除</li>
+      <li><strong>アーカイブ：</strong>受信トレイから消えるが、メール自体は残る</li>
+    </ul>
+
+    <p>
+      迷ったら「アーカイブ」のほうが安全ですが、  
+      本当にいらないものは削除したほうが Gmail の容量節約になります。
+    </p>
+
+    <a href="https://automaker-hub.github.io/" class="main-link">
+      📩 Gmail を一瞬で整理する（無料ツールに戻る）
+    </a>
+
+  </article>
+
+  <footer>
+    Mail Cleaner Lab – Gmail 自動整理ツール（automaker-hub）
+  </footer>
+</div>
+
+</body>
+</html>
 
