@@ -557,6 +557,39 @@
       }
     }
   </style>
+
+<script>
+(function() {
+  const ua = navigator.userAgent.toLowerCase();
+
+  // LINE, Instagram, Facebook のアプリ内ブラウザ判定
+  const isLine = ua.indexOf("line") !== -1;
+  const isInstagram = ua.indexOf("instagram") !== -1;
+  const isFacebook = ua.indexOf("fbav") !== -1;
+
+  if (isLine || isInstagram || isFacebook) {
+    // ポップアップ表示
+    alert("このツールを利用するには、Safari または Chrome で開いてください。\n\nOKを押すと自動でブラウザで開きます。");
+
+    // iPhone → Safari で開く
+    if (/iphone|ipad|ipod/.test(ua)) {
+      window.location.href = "googlechrome://automaker-hub.github.io/";
+      setTimeout(() => {
+        window.location.href = "https://automaker-hub.github.io/";
+      }, 800);
+    } 
+    // Android → Chrome で開く
+    else if (/android/.test(ua)) {
+      window.location.href = "googlechrome://automaker-hub.github.io/";
+      setTimeout(() => {
+        window.location.href = "https://automaker-hub.github.io/";
+      }, 800);
+    }
+  }
+})();
+</script>
+
+  
 </head>
 <body>
   <div class="page">
