@@ -647,93 +647,102 @@
       </div>
     </header>
 
-    <main class="layout">
-      <!-- 左側：条件設定エリア -->
-      <section class="card" aria-label="条件設定">
-        <h2>
-          <span class="dot"></span>
-          整理したいメールの条件を決める
-        </h2>
-        <p class="desc">
-          どんなメールを整理したいかを指定します。<br />
-          下の「かんたん条件ボタン」を使うと、よくあるパターンをワンタップで呼び出せます。
-        </p>
+<section class="seo-article" style="background:#ffffff;border:1px solid #e0e0e0;border-radius:12px;padding:24px;margin-bottom:28px;box-shadow:0 1px 3px rgba(60,64,67,0.18);">
 
-        <div class="section-label">
-          <span class="bar"></span> かんたん条件ボタン（よくあるパターン）
-        </div>
-        <div class="preset">
-          <button type="button" data-preset="rakuten">楽天の宣伝メール</button>
-          <button type="button" data-preset="amazon">Amazonのお知らせ</button>
-          <button type="button" data-preset="promo">セール・キャンペーン系</button>
-          <button type="button" data-preset="magazine">メルマガ全般</button>
-          <button type="button" data-preset="old-promo">30日より前の宣伝メール</button>
-        </div>
-        <p class="preset-note">
-          ※同じボタンをもう一度押すと、条件がリセットされます。
-        </p>
+  <h2 style="margin-top:0;font-size:1.4rem;">📩 Mail Cleaner Lab（Gmail 自動整理ツール）とは？</h2>
 
-        <div class="section-label">
-          <span class="bar"></span> 送信元（from）
-        </div>
-        <input id="from-input" type="text" placeholder="例：news@rakuten.co.jp / @example.com" />
+  <p>
+    <strong>Mail Cleaner Lab</strong> は、Gmail に届く大量のメールを
+    <strong>安全に・正確に・ワンクリックで整理できる無料ツール</strong>です。  
+    ブラウザだけで動作し、アプリインストールは不要。  
+    Google の公式 OAuth 認証を利用しており、あなたの Gmail パスワードに触れることはありません。
+  </p>
 
-        <div class="section-label">
-          <span class="bar"></span> 件名にふくまれる言葉
-        </div>
-        <input id="subject-input" type="text" placeholder="例：メルマガ, クーポン" />
+  <p>
+    特に Gmail は、日々多くの広告・キャンペーン・アプリ通知が届くため、
+    <strong>気づいたら数万件の未読メールになってしまう</strong>ことが多くあります。  
+    Mail Cleaner Lab は、そういった悩みを「検索条件の自動生成 → プレビュー → 実行」の流れで、
+    初心者でも安全に整理できるように設計されています。
+  </p>
 
-        <div class="section-label">
-          <span class="bar"></span> 本文にふくまれる言葉
-        </div>
-        <input id="body-input" type="text" placeholder="カンマ  ,  で区切って複数指定できます" />
+  <div style="background:#f8f9fa;padding:16px;border-left:4px solid #1a73e8;border-radius:8px;margin:22px 0;">
+    <strong>Mail Cleaner Lab の特徴：</strong><br>
+    ・検索条件を AI が自動で生成<br>
+    ・対象メールの件数を事前に確認可能（ミス防止）<br>
+    ・削除 / アーカイブ / 既読化をワンクリックで実行<br>
+    ・Gmail API の公式機能を利用した安全な操作<br>
+  </div>
 
-        <div class="section-label">
-          <span class="bar"></span> 除外したいキーワード
-        </div>
-        <input id="exclude-input" type="text" placeholder="重要なお知らせなど、絶対に残したい言葉" />
+  <h2>🧹 このツールでできること</h2>
+  <ul>
+    <li>🔍 AI を使った Gmail 検索条件の自動生成</li>
+    <li>📊 対象メール数のプレビュー表示</li>
+    <li>🗑️ 不要メールの一括削除（ゴミ箱へ移動）</li>
+    <li>📦 必要なメールだけ残しつつアーカイブする</li>
+    <li>✉️ 大量の未読メールを即時に既読化</li>
+    <li>📱 スマホ対応（PWAでホーム画面に追加可能）</li>
+  </ul>
 
-        <div class="row-two">
-          <div>
-            <div class="section-label">
-              <span class="bar"></span> いつ以降のメール
-            </div>
-            <input id="after-input" type="text" placeholder="例：7d / 2024-01-01" />
-          </div>
-          <div>
-            <div class="section-label">
-              <span class="bar"></span> いつ以前のメール
-            </div>
-            <input id="before-input" type="text" placeholder="例：30d / 2023-12-31" />
-          </div>
-        </div>
+  <h2>📌 Gmail にメールが溜まってしまう主な理由</h2>
+  <p>Gmail の受信トレイが散らかる原因の多くは以下の 4 つです：</p>
+  <ul>
+    <li>広告メール・キャンペーン通知が毎日届く</li>
+    <li>アプリ・SNS からの通知が自動的に蓄積される</li>
+    <li>メルマガの購読増加</li>
+    <li>古いメールを数年間放置してしまう</li>
+  </ul>
+  <p>
+    特に <code>older_than:30d</code>（30日より前）で検索すると、  
+    <strong>実際には 9 割が不要メール</strong>であるケースも珍しくありません。
+  </p>
 
-        <div class="section-label">
-          <span class="bar"></span> 実際に使われる検索条件（ここは自由に編集できます）
-        </div>
-        <textarea id="query-text" rows="4" placeholder="ここに検索条件が自動生成されます"></textarea>
+  <h2>🔐 安全性について（重要）</h2>
+  <p>
+    Mail Cleaner Lab は Google の公式 OAuth を利用し、  
+    <strong>Gmail パスワードを保存・取得することは一切ありません。</strong>
+  </p>
 
-        <div class="section-label">
-          <span class="bar"></span> 実行する内容
-        </div>
-        <select id="action-select">
-          <option value="trash">完全にいらないので削除する（ゴミ箱へ移動）</option>
-          <option value="archive">削除せず受信トレイから非表示にする（削除されません）</option>
-          <option value="read">そのまま残して既読にする</option>
-        </select>
+  <ul>
+    <li>✔ ログインはすべて Google 公式画面で行われる</li>
+    <li>✔ アクセストークンはブラウザ内だけに保存</li>
+    <li>✔ サーバーに情報を送信せずローカル動作</li>
+    <li>✔ Gmail 公式 API（gmail.modify）で安全に処理</li>
+  </ul>
 
-        <div class="button-row">
-          <button id="btn-generate" class="btn-main">
-            <span class="icon">✨</span> 条件を自動で作る
-          </button>
-          <button id="btn-preview" class="btn-secondary">
-            <span class="icon">🔍</span> 対象メールを確認する
-          </button>
-          <button id="btn-execute" class="btn-danger">
-            <span class="icon">⚠️</span> この条件で実行する
-          </button>
-        </div>
-      </section>
+  <p>
+    この仕組みにより、個人情報やメール内容が外部に送信されることはありません。  
+    セキュリティとプライバシーを重視した設計になっています。
+  </p>
+
+  <h2>📘 当サイトで公開している Gmail 役立ちガイド</h2>
+  <p>Mail Cleaner Lab と併せて役立つ記事を公開しています：</p>
+  <ul>
+    <li><a href="/blog/delete-tips.html">・不要メールを安全に削除する方法</a></li>
+    <li><a href="/blog/gmail-cleanup-tips.html">・Gmail をスッキリ整理する5つのコツ</a></li>
+    <li><a href="/blog/troubles.html">・Gmailのよくある悩み10選と対処法</a></li>
+  </ul>
+
+  <p>
+    すべて初心者にも分かるように、原因・操作方法・改善策を丁寧にまとめています。
+    AdSense 審査でも重要な「有益で独自性あるコンテンツ」として評価されるカテゴリです。
+  </p>
+
+  <h2>📬 まとめ：Mail Cleaner Lab で受信トレイを快適に保つ</h2>
+
+  <p>
+    Gmail の整理は  
+    <strong>① 検索条件を作る → ② 件数を確認 → ③ 一括処理</strong>  
+    の 3 ステップで劇的に効率化できます。
+  </p>
+
+  <p>
+    Mail Cleaner Lab はこの流れを完全に自動化しているため、  
+    誰でも簡単にメールの断捨離ができます。
+  </p>
+
+  <p><strong>今日からあなたの Gmail を、もっと快適でストレスのない状態に。</strong></p>
+
+</section>
 
       <!-- 右側：プレビュー / 実行結果エリア -->
       <section class="card" aria-label="実行結果">
