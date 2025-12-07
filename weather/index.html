@@ -1,50 +1,85 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>目的地の天気検索ツール</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: #f4f6f8;
-    }
-    .card {
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      max-width: 480px;
-      margin: auto;
-    }
-    input, button {
-      padding: 10px;
-      width: 100%;
-      margin-top: 10px;
-      font-size: 16px;
-    }
-    button {
-      background: #2563eb;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    #result {
-      margin-top: 20px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アウトドア天気 - ピンポイント天気</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: #eef2f3;
+    padding: 16px;
+  }
+
+  .card {
+    background: white;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h2 {
+    text-align: center;
+    margin-top: 0;
+  }
+
+  input, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+  }
+
+  button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  button:hover {
+    opacity: 0.9;
+  }
+
+  .outdoor-alert {
+    padding: 12px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .ok { background: #16a34a; }      /* 行ける（緑） */
+  .warn { background: #f59e0b; }    /* 注意（黄） */
+  .danger { background: #dc2626; }  /* 危険（赤） */
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+  }
+</style>
+
 </head>
 <body>
 
-  <div class="card">
-    <h2>目的地の天気を調べる</h2>
-    <input id="place" type="text" placeholder="東京, Osaka, New York など">
-    <button onclick="getWeather()">天気を調べる</button>
-    <div id="result"></div>
-  </div>
+<div class="card">
+  <h2>アウトドア天気（ピンポイント）</h2>
+
+  <input id="place" type="text" placeholder="例：富士山山頂、〇〇キャンプ場、河川敷など">
+  <button onclick="getWeather()">天気を調べる</button>
+
+  <div id="result"></div>
+</div>
 
 <script>
 async function getWeather() {
@@ -53,47 +88,52 @@ async function getWeather() {
 
   document.getElementById("result").innerHTML = "検索中…";
 
-  // Step1：Open-Meteo のジオコーディングで緯度・経度を取得
+  // ①緯度経度の取得
   const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(place)}&count=1&language=ja`;
   const geoRes = await fetch(geoUrl);
-  const geoData = await geoRes.json();
+  const geo = await geoRes.json();
 
-  if (!geoData.results) {
+  if (!geo.results) {
     document.getElementById("result").innerHTML = "場所が見つかりませんでした。";
     return;
   }
 
-  const { latitude, longitude } = geoData.results[0];
+  const { latitude, longitude, elevation } = geo.results[0];
 
-  // Step2：天気情報を取得
-  const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto`;
-  const weatherRes = await fetch(weatherUrl);
-  const weatherData = await weatherRes.json();
+  // ②天気の取得
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto`;
+  const res = await fetch(url);
+  const data = await res.json();
 
-  const w = weatherData.daily;
+  const w = data.daily;
+  const current = data.current;
 
-  const weatherCodeMap = {
-    0: "☀️ 快晴",
-    1: "🌤 晴れ",
-    2: "⛅ 曇り気味",
-    3: "☁️ 曇り",
-    45: "🌫 霧",
-    48: "🌫 霧雨",
-    51: "🌦 霧雨",
-    61: "🌧 弱い雨",
-    63: "🌧 雨",
-    65: "🌧 強い雨",
-    71: "❄️ 雪",
-    95: "⛈ 雷雨"
+  // 危険度計算（風速 × 気温 × 天気コード）
+  let dangerLevel = "ok";
+  if (current.wind_speed_10m >= 8) dangerLevel = "warn";
+  if (current.wind_speed_10m >= 12) dangerLevel = "danger";
+  if ([65,71,95].includes(w.weathercode[0])) dangerLevel = "danger"; // 強雨・雪・雷
+
+  const weatherText = {
+    0:"☀️ 快晴",1:"🌤 晴れ",2:"⛅",3:"☁️",
+    51:"🌦 小雨",61:"🌧 雨",65:"🌧 強雨",71:"❄️ 雪",95:"⛈ 雷"
   };
 
-  const today = weatherCodeMap[w.weathercode[0]] || "不明";
-
   document.getElementById("result").innerHTML = `
-    <h3>📍 ${place} の天気</h3>
-    <p><b>今日:</b> ${today}</p>
-    <p>最高気温: ${w.temperature_2m_max[0]}°C</p>
-    <p>最低気温: ${w.temperature_2m_min[0]}°C</p>
+    <div class="outdoor-alert ${dangerLevel}">
+      ${
+        dangerLevel === "ok" ? "🟢 良好：アウトドア日和！" :
+        dangerLevel === "warn" ? "🟡 注意：風が強めです" :
+        "🔴 危険：強風/雷の可能性あり"
+      }
+    </div>
+
+    <div class="row"><b>天気：</b> ${weatherText[w.weathercode[0]]}</div>
+    <div class="row"><b>現在の気温：</b> ${current.temperature_2m}°C</div>
+    <div class="row"><b>最高気温：</b> ${w.temperature_2m_max[0]}°C</div>
+    <div class="row"><b>最低気温：</b> ${w.temperature_2m_min[0]}°C</div>
+    <div class="row"><b>風速：</b> ${current.wind_speed_10m} m/s</div>
+    <div class="row"><b>標高：</b> ${elevation || "不明"} m</div>
   `;
 }
 </script>
