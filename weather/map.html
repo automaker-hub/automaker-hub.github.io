@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>地図で天気を調べる</title>
+
+  <!-- Leaflet地図ライブラリ -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <style>
+    body { margin:0; }
+    #map { height: 60vh; }
+    #result { padding: 15px; font-size: 16px; }
+  </style>
+</head>
+<body>
+
+<h2 style="padding:10px;">地図をクリック → その地点の天気を表示</h2>
+
+<div id="map"></div>
+<div id="result">地点をクリックしてください</div>
+
+<script>
+// ① 地図の初期表示
+const map = L.map('map').setView([35.6804, 139.7690], 10); // 東京
+
+// タイル（無料でOK）
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+let marker;
+
+// ② 地図クリックイベント
+map.on('click', async function(e) {
+  const lat = e.latlng.lat;
+  const lon = e.latlng.lng;
+
+  if (marker) map.removeLayer(marker);
+  marker = L.marker([lat, lon]).addTo(map);
+
+  document.getElementById("result").innerHTML = "天気を取得中…";
+
+  // ③ Open-Meteo 天気データ取得
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto`;
+  const res = await fetch(url);
+  const data = await res.json();
+
+  const w = data.daily;
+
+  const weatherCodeMap = {
+    0:"☀️ 快晴",1:"🌤 晴れ",2:"⛅",3:"☁️",
+    45:"🌫",48:"🌫",51:"🌦",61:"🌧",63:"🌧",65:"🌧",71:"❄️",95:"⛈"
+  };
+
+  const text = `
+    <h3>選択した地点の天気</h3>
+    <p><strong>今日:</strong> ${weatherCodeMap[w.weathercode[0]]}</p>
+    <p>最高気温: ${w.temperature_2m_max[0]}°C</p>
+    <p>最低気温: ${w.temperature_2m_min[0]}°C</p>
+    <p>緯度: ${lat.toFixed(5)}, 経度: ${lon.toFixed(5)}</p>
+  `;
+
+  document.getElementById("result").innerHTML = text;
+});
+</script>
+
+</body>
+</html>
