@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>目的地の天気検索ツール</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f4f6f8;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 480px;
+      margin: auto;
+    }
+    input, button {
+      padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>目的地の天気を調べる</h2>
+    <input id="place" type="text" placeholder="東京, Osaka, New York など">
+    <button onclick="getWeather()">天気を調べる</button>
+    <div id="result"></div>
+  </div>
+
+<script>
+async function getWeather() {
+  const place = document.getElementById("place").value;
+  if (!place) return alert("場所を入力してください");
+
+  document.getElementById("result").innerHTML = "検索中…";
+
+  // Step1：Open-Meteo のジオコーディングで緯度・経度を取得
+  const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(place)}&count=1&language=ja`;
+  const geoRes = await fetch(geoUrl);
+  const geoData = await geoRes.json();
+
+  if (!geoData.results) {
+    document.getElementById("result").innerHTML = "場所が見つかりませんでした。";
+    return;
+  }
+
+  const { latitude, longitude } = geoData.results[0];
+
+  // Step2：天気情報を取得
+  const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto`;
+  const weatherRes = await fetch(weatherUrl);
+  const weatherData = await weatherRes.json();
+
+  const w = weatherData.daily;
+
+  const weatherCodeMap = {
+    0: "☀️ 快晴",
+    1: "🌤 晴れ",
+    2: "⛅ 曇り気味",
+    3: "☁️ 曇り",
+    45: "🌫 霧",
+    48: "🌫 霧雨",
+    51: "🌦 霧雨",
+    61: "🌧 弱い雨",
+    63: "🌧 雨",
+    65: "🌧 強い雨",
+    71: "❄️ 雪",
+    95: "⛈ 雷雨"
+  };
+
+  const today = weatherCodeMap[w.weathercode[0]] || "不明";
+
+  document.getElementById("result").innerHTML = `
+    <h3>📍 ${place} の天気</h3>
+    <p><b>今日:</b> ${today}</p>
+    <p>最高気温: ${w.temperature_2m_max[0]}°C</p>
+    <p>最低気温: ${w.temperature_2m_min[0]}°C</p>
+  `;
+}
+</script>
+
+</body>
+</html>
